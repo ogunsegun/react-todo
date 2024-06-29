@@ -128,6 +128,7 @@ function App() {
         <AddTodoForm onAddTodo={setNewTodo}/>
         <p>
           Todo for <strong>{newTodo}</strong>
+          <h4>UPDATE</h4>
         </p>
       {/* <List list={stories} title="React Ecosystem" />
       <List list={Java} title="JavaScrript Libraries" />  */}
