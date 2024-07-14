@@ -1,16 +1,16 @@
 import React from "react";
 
 
-function TodoListItem(props) {
-
+function TodoListItem({todo}) {
+    // console.log('item', props.item.url)
     return (
-        <li key={props.item.objectID} >
+        <li key={todo.objectID} >
               <span>
-                <a href={props.item.url}>{item.title}</a>
+                <a href={todo.url}>{todo.title}</a>
               </span>
-              <span>{props.item.author}</span>
-              <span>{props.item.num_comments}</span>
-              <span>{props.item.point}</span>
+              <span>{todo.author}</span>
+              <span>{todo.num_comments}</span>
+              <span>{todo.point}</span>
             </li>
     )
 }

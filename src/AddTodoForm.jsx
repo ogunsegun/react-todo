@@ -1,7 +1,7 @@
-import React from "react";
+import {useState} from "react";
 
 
-// const Search = () => {
+// const Search = (props) => {
 //   const [searchTerm, setSearchTerm] = React.useState('');
 
 //   const handleChange = (event) => {
@@ -21,7 +21,7 @@ import React from "react";
 //       <button>  </button>
     
 //     <p>
-//        Searching for <strong>{searchTerm}</strong>
+//        Searching for <strong>{props.searchTerm}</strong>
 //     </p>
 //     </form>
 //     </div>
@@ -29,29 +29,35 @@ import React from "react";
 
 // };
 
-function AddTodoForm(props){
+function AddTodoForm({onAddTodo}){
+
+  const [todoTitle, setTodoTitle] = useState("");
+  
+  const handleTitleChange = (event) => {
+    setTodoTitle(event.target.value);
+  };
 
   const handleAddTodo = (event) => {
     event.preventDefault();
-    const todoTitle = event.target.title.value;
-    console.log(todoTitle); //Log the value of todoTitle in the console
-    props.onAddTodo(todoTitle) 
-    event.target.reset(); //Reset the from
-  };
-
+    onAddTodo({
+      title: todoTitle,
+      id: Date.now()
+    });
+    setTodoTitle('');
+  } 
   return (
     <div>
       <form onSubmit={handleAddTodo}>
       <label htmlFor="todoTitle">Search: </label>
-      <input id='todoTitle' type="text" name="title"></input>
+      <input id='todoTitle' type="text" 
+      name="title" value={todoTitle} onChange={handleTitleChange}></input>
       <button type="submit"> Submit </button>
   
     </form>
     </div>
-  )
+  );
 
     
-}
-
+};
 
 export default AddTodoForm
