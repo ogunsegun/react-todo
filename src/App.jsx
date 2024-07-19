@@ -1,22 +1,37 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList'
 
 const title ='Lession_1_4';
 
-const App = () => {
-  const [todoList, setTodoList] = useState([]);
+const useSemiPersistentState = () => {
 
-const addTodo = (newTodo) => {
-  setTodoList([...todoList, newTodo]);
+  const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [todoList];
+
+  const [todoList, setTodoList] = useState(savedTodoList);
+
+   // Effect to save todoList to localStorage whenever it changes
+  useEffect (() => {
+    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+  });
+
+  return [todoList, setTodoList]
 }
+
+const App = () => {
+
+  const [todoList, setTodoList] = useSemiPersistentState();
+
+  const addTodo = (newTodo) => {
+    setTodoList([...todoList, newTodo]);
+  }
   return (
-    <div>
+    <>
       <h1>{title}</h1>
       <hr/>
       <AddTodoForm onAddTodo={addTodo} />
       <TodoList todoList={todoList} />
-    </div>
+    </>
   )
 }
 
