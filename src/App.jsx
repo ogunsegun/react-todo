@@ -6,7 +6,7 @@ const title ='Lession_1_5';
 
 const useSemiPersistentState = () => {
 
-  const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [todoList];
+  const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
 
   const [todoList, setTodoList] = useState(savedTodoList);
 
@@ -26,12 +26,12 @@ const App = () => {
     setTodoList([...todoList, newTodo]);
   }
   return (
-    <>
+    <div>
       <h1>{title}</h1>
       <hr/>
       <AddTodoForm onAddTodo={addTodo} />
       <TodoList todoList={todoList} />
-    </>
+    </div>
   )
 }
 
