@@ -33,3 +33,44 @@ const TodoList = ({todoList, onRemoveTodo}) => {
 }
 
 export default TodoList;
+
+
+
+
+// const title ='Lession_1_6';
+// import React from 'react'
+// import TodoListItem from "./TodoListItem";
+
+// const todoList = [
+//   {
+//     title: 'React',
+//     url: 'https://reactjs.org/',
+//     author: 'Jordan Walke',
+//     num_comments: 3,
+//     point: 4,
+//     objectID: 0,
+//   },
+//   {
+//     title: 'Redux',
+//     url: 'https://redux.js.org/',
+//     author: 'Dan Abramov, Andrew Clark',
+//     num_comments: 2,
+//     point:5,
+//     objectID: 1,
+//   },
+// ];
+
+// console.log('todoList', todoList)
+
+// const TodoList = ({todoList, onRemoveTodo}) => {
+//   return (
+//     <ul>
+//       {todoList.map((todo) => (
+//         <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
+//       ))}
+//     </ul>
+//   )
+// }
+
+// export default TodoList;
+

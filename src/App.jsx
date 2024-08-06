@@ -2,25 +2,34 @@ import {useEffect, useState} from 'react'
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList'
 
-const title ='Lession_1_6';
+const title ='Lession_1_7';
 
-const useSemiPersistentState = () => {
-
-  const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
-
-  const [todoList, setTodoList] = useState(savedTodoList);
-
-   // Effect to save todoList to localStorage whenever it changes
-  useEffect (() => {
-    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-  });
-
-  return [todoList, setTodoList]
-}
 
 const App = () => {
 
-  const [todoList, setTodoList] = useSemiPersistentState();
+  //const [todoList, setTodoList] = useSemiPersistentState(); /DELET
+  const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
+
+  const [todoList, setTodoList] = useState([]);
+
+  const [isLoading, setIsLoading] =useState(true)
+
+  useEffect(() => {
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({ data: { todoList: savedTodoList} });
+        }, 2000);
+    }).then((result) => {
+      setTodoList(result.data.todoList); 
+      setIsLoading(false);
+    });
+}, []);
+
+  useEffect (() => {
+    if(!isLoading) {
+    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    }
+  });
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
@@ -35,12 +44,70 @@ const App = () => {
       <h1>{title}</h1>
       <hr/>
       <AddTodoForm onAddTodo={addTodo} />
-      <TodoList todoList={todoList}  onRemoveTodo={removeTodo}/>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
     </div>
   )
 }
 
 export default App;
+
+
+
+
+
+// import {useEffect, useState} from 'react'
+// import AddTodoForm from './AddTodoForm';
+// import TodoList from './TodoList'
+
+// const title ='Lession_1_6';
+
+// const useSemiPersistentState = () => {
+
+//   const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
+
+//   const [todoList, setTodoList] = useState(savedTodoList);
+
+//    // Effect to save todoList to localStorage whenever it changes
+//   useEffect (() => {
+//     localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+//   });
+
+//   return [todoList, setTodoList]
+// }
+
+// const App = () => {
+
+//   const [todoList, setTodoList] = useSemiPersistentState();
+
+//   const addTodo = (newTodo) => {
+//     setTodoList([...todoList, newTodo]);
+//   }
+
+//   const removeTodo = (id) => {
+//     const updatedTodoList = todoList.filter((todo) => todo.id !==id);
+//     setTodoList(updatedTodoList);
+//   }
+//   return (
+//     <div>
+//       <h1>{title}</h1>
+//       <hr/>
+//       <AddTodoForm onAddTodo={addTodo} />
+//       <TodoList todoList={todoList}  onRemoveTodo={removeTodo}/>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+
+
+
+
+
 
 
 
