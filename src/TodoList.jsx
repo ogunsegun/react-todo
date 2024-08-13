@@ -20,7 +20,7 @@ const todoList = [
   },
 ];
 
-console.log('todoList', todoList)
+//console.log('todoList', todoList)
 
 const TodoList = ({todoList, onRemoveTodo}) => {
   return (
