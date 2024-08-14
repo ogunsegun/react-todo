@@ -7,7 +7,7 @@ const title ='Lession_1_7';
 
 const App = () => {
 
-  //const [todoList, setTodoList] = useSemiPersistentState(); /DELET
+  
   const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
 
   const [todoList, setTodoList] = useState([]);

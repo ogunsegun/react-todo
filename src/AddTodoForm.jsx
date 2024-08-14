@@ -40,11 +40,13 @@ function AddTodoForm({onAddTodo}){
 
   const handleAddTodo = (event) => {
     event.preventDefault();
+    console.log('Form submitted with title:', todoTitle);
     onAddTodo({
       title: todoTitle,
       id: Date.now()
     });
     setTodoTitle(''); 
+    console.log('Form cleared, current title:', todoTitle);
   } 
   return (
     <div>

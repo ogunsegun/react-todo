@@ -10,7 +10,7 @@ function InputWithLabel(props) {
     <>
       <label htmlFor="todoTitle">{props.children}</label>
       <input id='todoTitle' type="text" 
-      name="title" value={props.TodoTitle} onChange={props.handleTitleChange}
+      name="title" value={props.todoTitle} onChange={props.handleTitleChange}
       ref={inputRef} />      
     </>
   )
