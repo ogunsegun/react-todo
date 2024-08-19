@@ -37,6 +37,33 @@ export default TodoList;
 
 
 
+
+
+
+
+
+
+
+
+
+
+// LESSON_1_7
+
+// const TodoList = ({todoList, onRemoveTodo}) => {
+//   return (
+//     <ul>
+//       {todoList.map((todo) => (
+//         <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
+//       ))}
+//     </ul>
+//   )
+// }
+
+// export default TodoList;
+
+
+
+
 // const title ='Lession_1_6';
 // import React from 'react'
 // import TodoListItem from "./TodoListItem";
