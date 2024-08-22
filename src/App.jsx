@@ -1,28 +1,66 @@
 import {useEffect, useState} from 'react'
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList'
+import  {BrowserRouter, Routes, Route} from "react-router-dom"
 
-const title ='Lession_1_7';
+const title ='Lession_1_9';
 
 
 const App = () => {
 
-  //const [todoList, setTodoList] = useSemiPersistentState(); /DELET
+  
   const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
 
   const [todoList, setTodoList] = useState([]);
 
   const [isLoading, setIsLoading] =useState(true)
 
-  useEffect(() => {
-    new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve({ data: { todoList: savedTodoList} });
-        }, 2000);
-    }).then((result) => {
-      setTodoList(result.data.todoList); 
+  const fetchData = async (todos) => {
+    
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`
+      },
+    };
+
+    const url =`https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+
+    try {
+      const response = await fetch(url, options);
+
+      if(!response.ok){
+         const message = ` Error: ${response.status}`;
+         throw new Error(message);
+      }
+      const data = await response.json();
+      console.log(data)
+
+      const todos = data.records.map((record)=>({
+        id: record.id,
+        title: record.fields.Title,
+      }));
+      setTodoList(todos);
       setIsLoading(false);
-    });
+      //return data;
+      
+    } catch (error) {
+      //console.log(error.message);
+      return null;
+    }
+
+  };
+
+  useEffect(() => {
+    fetchData();
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve({ data: { todoList: savedTodoList} });
+//         }, 2000);
+//     }).then((result) => {
+//       setTodoList(result.data.todoList); 
+//       setIsLoading(false);
+//     });
 }, []);
 
   useEffect (() => {
@@ -40,6 +78,9 @@ const App = () => {
     setTodoList(updatedTodoList);
   }
   return (
+    <BrowserRouter>
+    <Routes>
+      <Route path='/react-todo' element={
     <div>
       <h1>{title}</h1>
       <hr/>
@@ -50,10 +91,98 @@ const App = () => {
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )}
     </div>
+    } />
+    <Route path='/react-todo/new' element={
+      <div>
+        <h1>New path for Lession_1_9</h1>
+
+        </div>
+    } />
+    </Routes>
+    </BrowserRouter>
   )
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+// const title ='Lession_1_7';
+
+
+// const App = () => {
+
+  
+//   const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
+
+//   const [todoList, setTodoList] = useState([]);
+
+//   const [isLoading, setIsLoading] =useState(true)
+
+//   useEffect(() => {
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve({ data: { todoList: savedTodoList} });
+//         }, 2000);
+//     }).then((result) => {
+//       setTodoList(result.data.todoList); 
+//       setIsLoading(false);
+//     });
+// }, []);
+
+//   useEffect (() => {
+//     if(!isLoading) {
+//     localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+//     }
+//   });
+
+//   const addTodo = (newTodo) => {
+//     setTodoList([...todoList, newTodo]);
+//   }
+
+//   const removeTodo = (id) => {
+//     const updatedTodoList = todoList.filter((todo) => todo.id !==id);
+//     setTodoList(updatedTodoList);
+//   }
+//   return (
+//     <div>
+//       <h1>{title}</h1>
+//       <hr/>
+//       <AddTodoForm onAddTodo={addTodo} />
+//       {isLoading ? (
+//         <p>Loading...</p>
+//       ) : (
+//         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+//       )}
+//     </div>
+//   )
+// }
+
+// export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -101,7 +230,7 @@ export default App;
 //   )
 // }
 
-// export default App;
+// export default 
 
 
 
@@ -161,10 +290,6 @@ export default App;
 // }
 
 // export default App;
-
-
-
-
 
 
 
