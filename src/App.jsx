@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react'
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList'
+import  {BrowserRouter, Routes, Route} from "react-router-dom"
 
-const title ='Lession_1_8';
+const title ='Lession_1_9';
 
 
 const App = () => {
@@ -77,6 +78,9 @@ const App = () => {
     setTodoList(updatedTodoList);
   }
   return (
+    <BrowserRouter>
+    <Routes>
+      <Route path='/react-todo' element={
     <div>
       <h1>{title}</h1>
       <hr/>
@@ -87,6 +91,15 @@ const App = () => {
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )}
     </div>
+    } />
+    <Route path='/react-todo/new' element={
+      <div>
+        <h1>New path for Lession_1_9</h1>
+
+        </div>
+    } />
+    </Routes>
+    </BrowserRouter>
   )
 }
 
