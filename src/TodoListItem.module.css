@@ -1,0 +1,59 @@
+/* styles for app */
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 15px;
+    background-color: bisque;
+    background: linear-gradient(to left, #b6fbff, #83a4d4);
+}
+
+.appLink {
+    
+}
+
+.Linkapp {
+    color: rgb(112, 103, 103);
+    size: 10px;
+    margin: 8px;
+}
+
+.InputLabel {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
+.ListItem {
+    color: #c85151;
+}
+
+.ButtonItem {
+    background: transparent;
+   border: 1px solid #c85151;
+   padding: 5px;
+   margin: 8px 10px;
+   cursor: pointer;
+   border-radius: 7px;
+   color: #8b8787;
+   transition: all 0.1s ease-in;   
+}
+
+.ButtonItemsubmit {
+   background: transparent;
+   border: 1px solid #4d20b7;
+   padding: 5px;
+   cursor: pointer;
+   border-radius: 7px;
+
+   transition: all 0.1s ease-in;   
+}
+
+.ButtonItemsubmit:hover {
+    background: #cd67be;
+    color: #fff;
+}

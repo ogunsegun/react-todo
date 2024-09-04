@@ -1,5 +1,6 @@
 import {useState} from "react";
 import InputWithLabel from './InputWithLabel'
+import styles from './TodoListItem.module.css'
 
 
 // const Search = (props) => {
@@ -40,11 +41,13 @@ function AddTodoForm({onAddTodo}){
 
   const handleAddTodo = (event) => {
     event.preventDefault();
+    console.log('Form submitted with title:', todoTitle);
     onAddTodo({
       title: todoTitle,
       id: Date.now()
     });
     setTodoTitle(''); 
+    console.log('Form cleared, current title:', todoTitle);
   } 
   return (
     <div>
@@ -57,7 +60,7 @@ function AddTodoForm({onAddTodo}){
           Title: 
         </InputWithLabel>
          
-      <button type="submit"> Submit </button>    
+      <button className={styles.ButtonItemsubmit} type="submit"> Submit </button>    
   
     </form>
     </div>
@@ -73,7 +76,47 @@ export default AddTodoForm
 
 
 
+// LESSON_1_7
 
+// function AddTodoForm({onAddTodo}){
+
+//   const [todoTitle, setTodoTitle] = useState("");
+  
+//   const handleTitleChange = (event) => {
+//     setTodoTitle(event.target.value);
+//   };
+
+//   const handleAddTodo = (event) => {
+//     event.preventDefault();
+//     console.log('Form submitted with title:', todoTitle);
+//     onAddTodo({
+//       title: todoTitle,
+//       id: Date.now()
+//     });
+//     setTodoTitle(''); 
+//     console.log('Form cleared, current title:', todoTitle);
+//   } 
+//   return (
+//     <div>
+//       <form onSubmit={handleAddTodo}>
+//         <InputWithLabel
+//         // id = {todoTitle}
+//         // label={Title}
+//         todoTitle={todoTitle}
+//         handleTitleChange={handleTitleChange} >
+//           Title: 
+//         </InputWithLabel>
+         
+//       <button type="submit"> Submit </button>    
+  
+//     </form>
+//     </div>
+//   );
+
+    
+// };
+
+// export default AddTodoForm
 
 
 
