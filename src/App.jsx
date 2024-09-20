@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
-import AddTodoForm from './AddTodoForm';
-import TodoList from './TodoList'
+import AddTodoForm from './components/AddTodoForm';
+import TodoList from './components/TodoList'
 import Myapi from './Myapi';
 import  {BrowserRouter, Routes, Route} from "react-router-dom"
-import styles from './TodoListItem.module.css'
+import styles from './components/TodoListItem.module.css'
 
 const title ='Lession_3_1';
 

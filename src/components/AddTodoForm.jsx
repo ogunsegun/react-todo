@@ -1,6 +1,7 @@
 import {useState} from "react";
 import InputWithLabel from './InputWithLabel'
 import styles from './TodoListItem.module.css'
+import propTypes from 'prop-types'
 
 
 // const Search = (props) => {
@@ -69,7 +70,27 @@ function AddTodoForm({onAddTodo}){
     
 };
 
+
+// AddTodoForm.propTypes = {
+  
+//   onAddTodo:propTypes.func.isRequired,
+// };
+
 export default AddTodoForm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
