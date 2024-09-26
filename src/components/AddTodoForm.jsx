@@ -1,7 +1,7 @@
 import {useState} from "react";
 import InputWithLabel from './InputWithLabel'
 import styles from './TodoListItem.module.css'
-import propTypes from 'prop-types'
+// import propTypes from 'prop-types'
 
 
 // const Search = (props) => {
@@ -42,16 +42,16 @@ function AddTodoForm({onAddTodo}){
 
   const handleAddTodo = (event) => {
     event.preventDefault();
-    console.log('Form submitted with title:', todoTitle);
+    // console.log('Form submitted with title:', todoTitle);
     onAddTodo({
       title: todoTitle,
       id: Date.now()
     });
     setTodoTitle(''); 
-    console.log('Form cleared, current title:', todoTitle);
+    // console.log('Form cleared, current title:', todoTitle);
   } 
   return (
-    <div>
+    <div data-testid="todo-1">
       <form onSubmit={handleAddTodo}>
         <InputWithLabel
         // id = {todoTitle}
